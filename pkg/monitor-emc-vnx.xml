@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uptime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="4.0" target_grouping="other">
+<uptime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="4.0" target_grouping="other">'
     <class>EMC VNX Capacity Monitor</class>
 	<exec>com.uptimesoftware.uptime.erdc.MonitorCustomScriptRunner</exec>
 	<erdc_version>1.0</erdc_version>
@@ -12,7 +12,7 @@
 		<requires_agent_scripts>false</requires_agent_scripts>
 	</grid_info>	
     <elements>
-        <element name="process_windows" parameter_type="input" data_type="string" gui_basic="1" range_type="0 hidden="true">
+        <element name="process_windows" parameter_type="input" data_type="string" gui_basic="1" range_type="0" hidden="true">
             <control_options>size:20</control_options>
             <default_value>plugins/scripts/monitor-emc-vnx/monitor-emc-vnx.bat</default_value>
             <validation_rule/><error_message/>
@@ -51,7 +51,7 @@
                 <string/>
             </gui_type>
         </element>
-                <element name="USERNAME" parameter_type="input" data_type="string" gui_basic="1" range_type="0">
+        <element name="USERNAME" parameter_type="input" data_type="string" gui_basic="1" range_type="0">
             <control_options>size:20</control_options>
             <default_value></default_value>
             <validation_rule/><error_message/>
