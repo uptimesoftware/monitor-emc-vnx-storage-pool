@@ -38,6 +38,19 @@
                 <string/>
             </gui_type>
         </element>
+        <element name="STORAGE_PROC_HOSTNAME" parameter_type="input" data_type="string" gui_basic="1" range_type="0">
+            <control_options>size:20</control_options>
+            <default_value></default_value>
+            <validation_rule/><error_message/>
+            <short_description>Storage Processor Hostname</short_description>
+            <long_description>Storage processor hostname</long_description>
+            <error_message>
+                <alphanumeric>required field</alphanumeric>
+            </error_message>                 
+            <gui_type>
+                <string/>
+            </gui_type>
+        </element>
         <element name="USERNAME" parameter_type="input" data_type="string" gui_basic="1" range_type="0">
             <control_options>size:20</control_options>
             <default_value></default_value>

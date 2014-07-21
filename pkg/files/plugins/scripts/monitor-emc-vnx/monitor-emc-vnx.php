@@ -18,17 +18,17 @@ if ($OPTIONS[m] == "test") {
     $FULLRCOMMAND="type $RFILENAME > $ROUTPUT";
     }
 else {
-    $HOSTNAME=getenv('UPTIME_HOSTNAME');
+    $STORAGE_PROC_HOSTNAME=getenv('UPTIME_STORAGE_PROC_HOSTNAME');
     $USERNAME=getenv('UPTIME_USERNAME');
     $PASSWORD=getenv('UPTIME_PASSWORD');
 	$NAVIPATH=getenv('UPTIME_NAVIPATH');
-    $POUTPUT="vnxmonitor.$HOSTNAME.storagepool.OUT.xml";
-    $ROUTPUT="vnxmonitor.$HOSTNAME.rg.OUT.xml";
-    $RTESTOUT="vnxmonitor.$HOSTNAME.rg.TESTOUT.xml";
-    $XMLOUT="vnxmonitor.$HOSTNAME.OUT.xml";
+    $POUTPUT="vnxmonitor.$STORAGE_PROC_HOSTNAME.storagepool.OUT.xml";
+    $ROUTPUT="vnxmonitor.$STORAGE_PROC_HOSTNAME.rg.OUT.xml";
+    $RTESTOUT="vnxmonitor.$STORAGE_PROC_HOSTNAME.rg.TESTOUT.xml";
+    $XMLOUT="vnxmonitor.$STORAGE_PROC_HOSTNAME.OUT.xml";
     //$NAVIPATH=escapeshellarg('C:\Program Files (x86)\EMC\Navisphere CLI\naviseccli.exe');
-    $PCOMMAND="$NAVIPATH -User $USERNAME -Password $PASSWORD -Scope 0 -h $HOSTNAME -XML storagepool -list";
-    $RCOMMAND="$NAVIPATH -User $USERNAME -Password $PASSWORD -Scope 0 -h $HOSTNAME -XML getrg";
+    $PCOMMAND="$NAVIPATH -User $USERNAME -Password $PASSWORD -Scope 0 -h $STORAGE_PROC_HOSTNAME -XML storagepool -list";
+    $RCOMMAND="$NAVIPATH -User $USERNAME -Password $PASSWORD -Scope 0 -h $STORAGE_PROC_HOSTNAME -XML getrg";
     $FULLPCOMMAND="$PCOMMAND > $POUTPUT";
     $FULLRCOMMAND="$RCOMMAND > $ROUTPUT";
     }  
