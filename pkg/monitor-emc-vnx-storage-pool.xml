@@ -14,7 +14,7 @@
     <elements>
         <element name="process_windows" parameter_type="input" data_type="string" gui_basic="1" range_type="0" hidden="true">
             <control_options>size:20</control_options>
-            <default_value>plugins/scripts/monitor-emc-vnx/monitor-emc-vnx.bat</default_value>
+            <default_value>plugins/scripts/monitor-emc-vnx-storage-pool/monitor-emc-vnx-storage-pool.bat</default_value>
             <validation_rule/><error_message/>
             <short_description>Script Executable</short_description>
             <long_description>Script Executable.  Leave at the default value, unless otherwise noted.</long_description>
@@ -77,71 +77,106 @@
                 <password/>
             </gui_type>
         </element>	
-        <element name="TRAWCAP_G" parameter_type="output" data_type="decimal" gui_basic="1" units="GBs" range_type="0">
+        <element name="Raw_Capacity_GBs" parameter_type="output" data_type="ranged" gui_basic="1" units="GBs" range_type="0">
             <control_options>size:10</control_options>
             <default_value/>
-            <short_description>Total Raw Capacity - Array (GBs)</short_description>
-            <long_description>Total Raw Capacity - Array (GBs)</long_description>
+            <short_description>Raw Capacity (GBs)</short_description>
+            <long_description>Raw Capacity (GBs)</long_description>
             <validation_rule/>
             <error_message/>
             <gui_type>
                 <decimal/>
             </gui_type>
         </element>
-        <element name="TFREECAP_G" parameter_type="output" data_type="decimal" gui_basic="1" units="GB" range_type="0">
-            <control_options>size:10</control_options>
-            <short_description>Total Available Capacity - Array (GBs)</short_description>
-            <long_description>Total Available Capacity - Array (GBs)</long_description>
-            <validation_rule/>
-            <error_message/>
-            <gui_type>
-                <decimal/>
-            </gui_type>
-        </element>
-        <element name="TPRAWCAP_G" parameter_type="output" data_type="decimal" gui_basic="1" units="GBs" range_type="0">
+        <element name="User_Capacity_GBs" parameter_type="output" data_type="ranged" gui_basic="1" units="GBs" range_type="0">
             <control_options>size:10</control_options>
             <default_value/>
-            <short_description>Total Raw Capacity - Storage Pools (GBs)</short_description>
-            <long_description>Total Raw Capacity - Storage Pools (GBs)</long_description>
+            <short_description>User Capacity (GBs)</short_description>
+            <long_description>User Capacity (GBs)</long_description>
             <validation_rule/>
             <error_message/>
             <gui_type>
                 <decimal/>
             </gui_type>
         </element>
-        <element name="TPAVAILCAP_G" parameter_type="output" data_type="decimal" gui_basic="1" units="GB" range_type="0">
+        <element name="Available_Capacity_GBs" parameter_type="output" data_type="ranged" gui_basic="1" units="GBs" range_type="0">
             <control_options>size:10</control_options>
             <default_value/>
-            <short_description>Total Available Capacity - Storage Pools (GBs)</short_description>
-            <long_description>Total Available Capacity - Storage Pools (GBs)</long_description>
+            <short_description>Available Capacity (GBs)</short_description>
+            <long_description>Available Capacity (GBs)</long_description>
             <validation_rule/>
             <error_message/>
             <gui_type>
                 <decimal/>
             </gui_type>
         </element>
-        <element name="RTRAWCAP_G" parameter_type="output" data_type="decimal" gui_basic="1" units="GBs" range_type="0">
+        <element name="Total_Subscribed_Capacity_GBs" parameter_type="output" data_type="ranged" gui_basic="1" units="GBs" range_type="0">
             <control_options>size:10</control_options>
             <default_value/>
-            <short_description>Total Raw Capacity - Raid Groups (GBs)</short_description>
-            <long_description>Total Raw Capacity - Raid Groups (GBs)</long_description>
+            <short_description>Total Subscribed Capacity (GBs)</short_description>
+            <long_description>Total Subscribed Capacity (GBs)</long_description>
             <validation_rule/>
             <error_message/>
             <gui_type>
                 <decimal/>
             </gui_type>
         </element>
-        <element name="RTFREECAP_G" parameter_type="output" data_type="decimal" gui_basic="1" units="GB" range_type="0">
+        <element name="Percent_Full" parameter_type="output" data_type="ranged" gui_basic="1" units="%" range_type="0">
             <control_options>size:10</control_options>
             <default_value/>
-            <short_description>Total Available Capacity - Raid Groups (GBs)</short_description>
-            <long_description>Total Available Capacity - Raid Groups (GBs)</long_description>
+            <short_description>Percent Full</short_description>
+            <long_description>Percent Full</long_description>
             <validation_rule/>
             <error_message/>
             <gui_type>
                 <decimal/>
             </gui_type>
         </element>
+        <element name="Raw_Capacity_Blocks" parameter_type="output" data_type="ranged" gui_basic="1" units="blocks" range_type="0">
+            <control_options>size:10</control_options>
+            <default_value/>
+            <short_description>Raw Capacity Blocks</short_description>
+            <long_description>Raw Capacity Blocks</long_description>
+            <validation_rule/>
+            <error_message/>
+            <gui_type>
+                <decimal/>
+            </gui_type>
+        </element>
+        <element name="User_Capacity_Blocks" parameter_type="output" data_type="ranged" gui_basic="1" units="blocks" range_type="0">
+            <control_options>size:10</control_options>
+            <default_value/>
+            <short_description>User Capacity Blocks</short_description>
+            <long_description>User Capacity Blocks</long_description>
+            <validation_rule/>
+            <error_message/>
+            <gui_type>
+                <decimal/>
+            </gui_type>
+        </element>
+        <element name="Available_Capacity_Blocks" parameter_type="output" data_type="ranged" gui_basic="1" units="blocks" range_type="0">
+            <control_options>size:10</control_options>
+            <default_value/>
+            <short_description>Available Capacity Blocks</short_description>
+            <long_description>Available Capacity Blocks</long_description>
+            <validation_rule/>
+            <error_message/>
+            <gui_type>
+                <decimal/>
+            </gui_type>
+        </element>
+        <element name="Total_Subscribed_Capacity_Blocks" parameter_type="output" data_type="ranged" gui_basic="1" units="blocks" range_type="0">
+            <control_options>size:10</control_options>
+            <default_value/>
+            <short_description>Total Subcribed Capacity Blocks</short_description>
+            <long_description>Raw Capacity Blocks</long_description>
+            <validation_rule/>
+            <error_message/>
+            <gui_type>
+                <decimal/>
+            </gui_type>
+        </element>
+        
     </elements>
     <help>Monitor EMC VNX series SAN capacity using EMC Navisphere CLI.</help>
 </uptime>

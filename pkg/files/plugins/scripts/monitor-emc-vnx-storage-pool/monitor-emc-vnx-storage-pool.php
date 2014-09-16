@@ -218,32 +218,15 @@ if (file_exists($ROUTPUT)) {
     }
     
     // Output all variable for up.time
-    
-    //print "\n";
-    //print "TPOOLS $TPOOLS";
-    //print "\n";
-    print "TPRAWCAP_G $TPRAWCAP_G \n";
-    //print "TPUSRCAP_G $TPUSRCAP_G \n";
-    print "TPAVAILCAP_G $TPAVAILCAP_G \n";
-    //print "TPSUBCAP_G $TPSUBCAP_G \n";
-    //print "TPPFULL $TPPFULL \n";
-    //print "TPRAWCAP $TPRAWCAP \n";
-    //print "TPUSRCAP $TPUSRCAP \n";
-    //print "TPAVAILCAP $TPAVAILCAP \n";
-    //print "TPSUBCAP $TPSUBCAP \n";
-    //print "\n";
-    //print "TRGS $TRGS\n";
-    //print "RTRAWCAP $RTRAWCAP\n";
-    //print "RTLOGCAP $RTLOGCAP\n";
-    //print "RTFREECAP $RTFREECAP\n";
-    print "RTRAWCAP_G $RTRAWCAP_G\n";
-    //print "RTLOGCAP_G $RTLOGCAP_G\n";
-    print "RTFREECAP_G $RTFREECAP_G\n";
-    //print "\n";
-    //print "TRAWCAP $TRAWCAP\n";
-    //print "TFREECAP $TFREECAP\n";
-    print "TRAWCAP_G $TRAWCAP_G\n";
-    print "TFREECAP_G $TFREECAP_G\n";
+    foreach($POOLS as $cur_pool) {
+        $pool_id = $cur_pool['Storage_Pool_ID'];
+        foreach ($cur_pool as $k => $v) {
+            if ($k != "Storage_Pool_ID") {
+                echo $pool_id . "." . $k . " " . $v . "\n";
+            }
+        }
+
+    }
 
 //}
 //catch (Exception $e) {
