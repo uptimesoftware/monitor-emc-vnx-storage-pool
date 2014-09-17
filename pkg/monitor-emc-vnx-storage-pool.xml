@@ -178,5 +178,5 @@
         </element>
         
     </elements>
-    <help>Monitor EMC VNX series SAN capacity using EMC Navisphere CLI.</help>
+    <help>Monitor EMC VNX metrics broken down by Storage Pool.</help>
 </uptime>
