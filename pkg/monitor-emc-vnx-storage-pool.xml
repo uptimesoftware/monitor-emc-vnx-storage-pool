@@ -27,7 +27,7 @@
         </element>	
 		<element name="NAVIPATH" parameter_type="input" data_type="string" gui_basic="1" range_type="0">
             <control_options>size:20</control_options>
-            <default_value>C:\Program Files (x86)\EMC\Navisphere CLI\naviseccli.exe</default_value>
+            <default_value>"C:\Program Files (x86)\EMC\Navisphere CLI\naviseccli.exe"</default_value>
             <validation_rule/><error_message/>
             <short_description>EMC Navisphere CLI Path</short_description>
             <long_description>EMC Navisphere CLI Path (full path)</long_description>
@@ -176,6 +176,17 @@
                 <decimal/>
             </gui_type>
         </element>
+        <element name="timer" parameter_type="output" data_type="integer" gui_basic="0" range_type="0" units="ms">
+		<control_options>size:8</control_options>
+		<default_value />
+		<short_description>Response time</short_description>
+		<long_description>Response time in ms</long_description>
+		<validation_rule />
+		<error_message />
+		<gui_type>
+			<integer />
+		</gui_type>
+	</element>
         
     </elements>
     <help>Monitor EMC VNX metrics broken down by Storage Pool.</help>
