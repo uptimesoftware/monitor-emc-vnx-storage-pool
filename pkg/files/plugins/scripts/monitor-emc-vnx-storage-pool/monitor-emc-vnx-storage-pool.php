@@ -24,6 +24,9 @@ else {
     $USERNAME=getenv('UPTIME_USERNAME');
     $PASSWORD=getenv('UPTIME_PASSWORD');
 	$NAVIPATH=getenv('UPTIME_NAVIPATH');
+
+    $NAVIPATH = make_sure_path_has_double_quotes($NAVIPATH);
+
     $POUTPUT="vnxmonitor.$STORAGE_PROC_HOSTNAME.storagepool.OUT.xml";
     $XMLOUT="vnxmonitor.$STORAGE_PROC_HOSTNAME.OUT.xml";
     $PCOMMAND="$NAVIPATH -User $USERNAME -Password $PASSWORD -Scope 0 -h $STORAGE_PROC_HOSTNAME -XML storagepool -list";
@@ -93,6 +96,32 @@ if (file_exists($POUTPUT)) {
                 $LASTPOOL=$LASTPOOL+1;
             }
         }
+    }
+
+
+    function make_sure_path_has_double_quotes($path)
+    {
+        $first_char = substr($path, 0, 1);
+        $last_char = substr($path, -1, 1);
+
+        //if we have double quotes at the beginning and end, just return the path as is
+        if (strpos('"', $first_char) === true AND strpos('"', $last_char) === true)
+        {
+            return $path;
+        }
+        // missing the first double quote
+        elseif ( strpos('"', $first_char) === false AND strpos('"', $last_char) === true )
+        {
+            return '"' . $path;
+        }
+        elseif ( strpos('"', $first_char) === true AND strpos('"', $last_char) === false )
+        {
+            return $path . '"';
+        }
+        elseif ( strpos('"', $first_char) === false AND strpos('"', $last_char) === false ) {
+            return '"' . $path . '"';
+        }
+
     }
 
     
