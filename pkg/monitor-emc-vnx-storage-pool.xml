@@ -27,7 +27,7 @@
         </element>	
 		<element name="NAVIPATH" parameter_type="input" data_type="string" gui_basic="1" range_type="0">
             <control_options>size:20</control_options>
-            <default_value>"C:\Program Files (x86)\EMC\Navisphere CLI\naviseccli.exe"</default_value>
+            <default_value>\"C:\Program Files (x86)\EMC\Navisphere CLI\naviseccli.exe\"</default_value>
             <validation_rule/><error_message/>
             <short_description>EMC Navisphere CLI Path</short_description>
             <long_description>EMC Navisphere CLI Path (full path)</long_description>
