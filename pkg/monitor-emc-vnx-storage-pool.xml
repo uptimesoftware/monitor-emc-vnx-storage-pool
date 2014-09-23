@@ -176,6 +176,17 @@
                 <decimal/>
             </gui_type>
         </element>
+        <element name="timer" parameter_type="output" data_type="integer" gui_basic="0" range_type="0" units="ms">
+            <control_options>size:8</control_options>
+            <default_value />
+            <short_description>Response time</short_description>
+            <long_description>Response time in ms</long_description>
+            <validation_rule />
+            <error_message />
+            <gui_type>
+                <integer />
+            </gui_type>
+    </element>
         
     </elements>
     <help>Monitor EMC VNX metrics broken down by Storage Pool.</help>
