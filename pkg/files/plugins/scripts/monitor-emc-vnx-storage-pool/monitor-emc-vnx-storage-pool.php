@@ -101,24 +101,12 @@ if (file_exists($POUTPUT)) {
 
     function make_sure_path_has_double_quotes($path)
     {
-        $first_char = substr($path, 0, 1);
-        $last_char = substr($path, -1, 1);
-
-        //if we have double quotes at the beginning and end, just return the path as is
-        if (strpos('"', $first_char) === true AND strpos('"', $last_char) === true)
+        if (preg_match('/^(["\']).*\1$/m', $path))
         {
             return $path;
         }
-        // missing the first double quote
-        elseif ( strpos('"', $first_char) === false AND strpos('"', $last_char) === true )
+        else
         {
-            return '"' . $path;
-        }
-        elseif ( strpos('"', $first_char) === true AND strpos('"', $last_char) === false )
-        {
-            return $path . '"';
-        }
-        elseif ( strpos('"', $first_char) === false AND strpos('"', $last_char) === false ) {
             return '"' . $path . '"';
         }
 
