@@ -1,24 +1,12 @@
 <?php
 
 $TIMESTAMP=date("Y-m-d H:i:s");
-$OPTIONS = getopt("m:");
 $ARRAY=array();
 $ARRAYPROPERTIES=array();
 $POOLS=array();
 $RGS=array();
 
-if ($OPTIONS[m] == "test") {
-    //for local testing against static XML
-    $TESTSET = "PrimaryArray_VNX5300";
-    $PFILENAME="$TESTSET.storagepool.xml";
-    $RFILENAME="$TESTSET.rg.xml";
-    $POUTPUT="vnxmonitor.$TESTSET.storagepool.OUT.xml";
-    $ROUTPUT="vnxmonitor.$TESTSET.rg.OUT.xml";
-    $XMLOUT="vnxmonitor.$TESTSET.OUT.xml";
-    $FULLPCOMMAND="type $PFILENAME > $POUTPUT";
-    $FULLRCOMMAND="type $RFILENAME > $ROUTPUT";
-    }
-else {
+
     //actually connect to VNX via the navisecli client and get the XML
     $STORAGE_PROC_HOSTNAME=getenv('UPTIME_STORAGE_PROC_HOSTNAME');
     $USERNAME=getenv('UPTIME_USERNAME');
@@ -31,7 +19,7 @@ else {
     $XMLOUT="vnxmonitor.$STORAGE_PROC_HOSTNAME.OUT.xml";
     $PCOMMAND="$NAVIPATH -User $USERNAME -Password $PASSWORD -Scope 0 -h $STORAGE_PROC_HOSTNAME -XML storagepool -list";
     $FULLPCOMMAND="$PCOMMAND > $POUTPUT";
-    }  
+ 
 
 if (file_exists($POUTPUT)) {
     shell_exec("del $POUTPUT");}
