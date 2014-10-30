@@ -2,7 +2,7 @@
 <uptime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="4.0" target_grouping="other">'
     <class>EMC VNX Storage Pool Monitor</class>
 	<exec>com.uptimesoftware.uptime.erdc.MonitorCustomScriptRunner</exec>
-	<erdc_version>1.21</erdc_version>
+	<erdc_version>1.22</erdc_version>
 	<category>Storage Monitors</category>
 	<category_related>Network Device Monitors</category_related>
 	<grid_info>

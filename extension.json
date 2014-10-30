@@ -10,7 +10,7 @@
         "upgrade_in_place": true,
         "requires_additional_setup": true,
         "requires_agent_scripts": false,
-        "version": "1.21",
+        "version": "1.22",
         "supported_platforms": [
             "windows",
             "linux"
