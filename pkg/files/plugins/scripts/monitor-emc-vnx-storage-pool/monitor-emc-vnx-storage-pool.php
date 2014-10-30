@@ -101,15 +101,21 @@ if (file_exists($POUTPUT)) {
 
     function make_sure_path_has_double_quotes($path)
     {
-        if (preg_match('/^(["\']).*\1$/m', $path))
-        {
-            return $path;
+        //we really only need to double quote the path on windows
+        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+            if (preg_match('/^(["\']).*\1$/m', $path))
+            {
+                return $path;
+            }
+            else
+            {
+                return '"' . $path . '"';
+            }
         }
         else
         {
-            return '"' . $path . '"';
+            return $path;
         }
-
     }
 
     
