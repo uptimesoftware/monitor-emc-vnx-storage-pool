@@ -21,15 +21,37 @@ $RGS=array();
     $FULLPCOMMAND="$PCOMMAND > $POUTPUT";
  
 
+//if we already have an xml file, delete it
 if (file_exists($POUTPUT)) {
-    shell_exec("del $POUTPUT");}
 
-    // Read through the XML and get details about the various storage pools
-    shell_exec($FULLPCOMMAND);
-    if (empty($POUTPUT)) {
-        print "Error obtaining XML file. /n";}
+    if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN')
+    {
+        shell_exec("del $POUTPUT");
+    }
+    else
+    {
+        shell_exec("rm $POUTPUT");
+    }
+}
+
+
+//try to run the navicli command
+shell_exec($FULLPCOMMAND);
+if (empty($POUTPUT)) {
+    print "Error obtaining XML file. /n";
+    exit(3);
+}
         
-    $PXML=simplexml_load_file($POUTPUT);
+//try to load the resulting xml
+$PXML= @simplexml_load_file($POUTPUT);
+if($PXML === false)
+{
+    echo "Unable to Connect";
+    exit(3);
+}
+else
+{
+    // Read through the XML and get details about the various storage pools
     $PPARAMS=$PXML->MESSAGE->SIMPLERSP->METHODRESPONSE->PARAMVALUE;
     $POOL=array();
     foreach($PPARAMS as $NODE) { 
@@ -87,24 +109,7 @@ if (file_exists($POUTPUT)) {
     }
 
 
-    function make_sure_path_has_double_quotes($path)
-    {
-        //we really only need to double quote the path on windows
-        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-            if (preg_match('/^(["\']).*\1$/m', $path))
-            {
-                return $path;
-            }
-            else
-            {
-                return '"' . $path . '"';
-            }
-        }
-        else
-        {
-            return $path;
-        }
-    }
+
 
     
     // Output the metrics for each storage pool as ranged data.
@@ -121,5 +126,27 @@ if (file_exists($POUTPUT)) {
         }
 
     }
+
+}
+
+
+function make_sure_path_has_double_quotes($path)
+{
+    //we really only need to double quote the path on windows
+    if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+        if (preg_match('/^(["\']).*\1$/m', $path))
+        {
+            return $path;
+        }
+        else
+        {
+            return '"' . $path . '"';
+        }
+    }
+    else
+    {
+        return $path;
+    }
+}
 
 ?>
