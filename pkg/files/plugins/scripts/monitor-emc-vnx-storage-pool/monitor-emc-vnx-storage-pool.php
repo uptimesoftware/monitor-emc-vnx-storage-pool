@@ -9,7 +9,7 @@ $RGS=array();
 
 if ($OPTIONS[m] == "test") {
     //for local testing against static XML
-    $TESTSET = PrimaryArray_VNX5300;
+    $TESTSET = "PrimaryArray_VNX5300";
     $PFILENAME="$TESTSET.storagepool.xml";
     $RFILENAME="$TESTSET.rg.xml";
     $POUTPUT="vnxmonitor.$TESTSET.storagepool.OUT.xml";
