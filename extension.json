@@ -5,7 +5,7 @@
                 "7.3"
         ],
         "name": "EMC VNX Storage Pool Monitor",
-        "git_file_target": "https://github.com/uptimesoftware/monitor-emc-vnx-storage-pool/raw/feature/linux-support/dist/monitor-emc-vnx-storage-pool.zip",
+        "git_file_target": "https://github.com/uptimesoftware/monitor-emc-vnx-storage-pool/raw/develop/dist/monitor-emc-vnx-storage-pool.zip",
         "icon_url": "http://the-grid.uptimesoftware.com/img/posts/placeholder-logo.png",
         "upgrade_in_place": true,
         "requires_additional_setup": true,
