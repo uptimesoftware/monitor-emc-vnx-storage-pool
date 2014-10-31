@@ -1,24 +1,12 @@
 <?php
 
 $TIMESTAMP=date("Y-m-d H:i:s");
-$OPTIONS = getopt("m:");
 $ARRAY=array();
 $ARRAYPROPERTIES=array();
 $POOLS=array();
 $RGS=array();
 
-if ($OPTIONS[m] == "test") {
-    //for local testing against static XML
-    $TESTSET = PrimaryArray_VNX5300;
-    $PFILENAME="$TESTSET.storagepool.xml";
-    $RFILENAME="$TESTSET.rg.xml";
-    $POUTPUT="vnxmonitor.$TESTSET.storagepool.OUT.xml";
-    $ROUTPUT="vnxmonitor.$TESTSET.rg.OUT.xml";
-    $XMLOUT="vnxmonitor.$TESTSET.OUT.xml";
-    $FULLPCOMMAND="type $PFILENAME > $POUTPUT";
-    $FULLRCOMMAND="type $RFILENAME > $ROUTPUT";
-    }
-else {
+
     //actually connect to VNX via the navisecli client and get the XML
     $STORAGE_PROC_HOSTNAME=getenv('UPTIME_STORAGE_PROC_HOSTNAME');
     $USERNAME=getenv('UPTIME_USERNAME');
@@ -31,17 +19,39 @@ else {
     $XMLOUT="vnxmonitor.$STORAGE_PROC_HOSTNAME.OUT.xml";
     $PCOMMAND="$NAVIPATH -User $USERNAME -Password $PASSWORD -Scope 0 -h $STORAGE_PROC_HOSTNAME -XML storagepool -list";
     $FULLPCOMMAND="$PCOMMAND > $POUTPUT";
-    }  
+ 
 
+//if we already have an xml file, delete it
 if (file_exists($POUTPUT)) {
-    shell_exec("del $POUTPUT");}
 
-    // Read through the XML and get details about the various storage pools
-    shell_exec($FULLPCOMMAND);
-    if (empty($POUTPUT)) {
-        print "Error obtaining XML file. /n";}
+    if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN')
+    {
+        shell_exec("del $POUTPUT");
+    }
+    else
+    {
+        shell_exec("rm $POUTPUT");
+    }
+}
+
+
+//try to run the navicli command
+shell_exec($FULLPCOMMAND);
+if (empty($POUTPUT)) {
+    print "Error obtaining XML file. /n";
+    exit(3);
+}
         
-    $PXML=simplexml_load_file($POUTPUT);
+//try to load the resulting xml
+$PXML= @simplexml_load_file($POUTPUT);
+if($PXML === false)
+{
+    echo "Unable to Connect";
+    exit(3);
+}
+else
+{
+    // Read through the XML and get details about the various storage pools
     $PPARAMS=$PXML->MESSAGE->SIMPLERSP->METHODRESPONSE->PARAMVALUE;
     $POOL=array();
     foreach($PPARAMS as $NODE) { 
@@ -99,18 +109,7 @@ if (file_exists($POUTPUT)) {
     }
 
 
-    function make_sure_path_has_double_quotes($path)
-    {
-        if (preg_match('/^(["\']).*\1$/m', $path))
-        {
-            return $path;
-        }
-        else
-        {
-            return '"' . $path . '"';
-        }
 
-    }
 
     
     // Output the metrics for each storage pool as ranged data.
@@ -127,5 +126,27 @@ if (file_exists($POUTPUT)) {
         }
 
     }
+
+}
+
+
+function make_sure_path_has_double_quotes($path)
+{
+    //we really only need to double quote the path on windows
+    if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+        if (preg_match('/^(["\']).*\1$/m', $path))
+        {
+            return $path;
+        }
+        else
+        {
+            return '"' . $path . '"';
+        }
+    }
+    else
+    {
+        return $path;
+    }
+}
 
 ?>
